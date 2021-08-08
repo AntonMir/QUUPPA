@@ -26,7 +26,7 @@ const TagMap = observer(() => {
         socket.on('transferTagData', (data) => {
             let tags = data.tags;
            
-            if(tags.length > 0) {
+            if(Array.isArray(tags) && tags.length > 0) {
                 try {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     tags.map(tag => {

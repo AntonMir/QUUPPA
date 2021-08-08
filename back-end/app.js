@@ -12,7 +12,6 @@ require('module-alias/register'); // алиасы
  */
 const app = express()
 const PORT = process.env.PORT || 5000
-let devicePosition = '';
 const interval = 100;
 
 /**
@@ -31,11 +30,11 @@ const server = app.listen(PORT, () => {
  * WebSocket connect settings
  */
 const io = require('socket.io')(server, {
-	cors: {
-		origin: "http://localhost:3000",
-		methods: ["GET","POST"],
-		credentials: true
-	}
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"],
+        credentials: true
+    }
 });
 
 /**
@@ -50,26 +49,27 @@ io.once('connection', (socket) => {
 /**
  * get obj from TomCat
  */
-function getDevicesPosition(){
-    http.get('http:/ips.itelma.su:8080/qpe/getTagData?format=defaultLocation&humanReadable=true&maxAge=5000', (resp) => {
-        let data = '';
-        resp.on('data', (chunk) => {
-            data += chunk;
+function getDevicesPosition() {
+    return new Promise((resolve) => {
+        http.get('http:/ips.itelma.su:8080/qpe/getTagData?format=defaultLocation&humanReadable=true&maxAge=5000', (resp) => {
+            let data = '';
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+            resp.on('end', () => {
+                data = JSON.parse(data);
+                try {
+                    resolve(data.tags.length > 0 ? data : [])
+                } catch (error) {
+                    console.log('---', 'back-end:', error);
+                }
+            });
         });
-        resp.on('end', () => {
-            data = JSON.parse(data);
-            try {
-                if (data.tags.length > 0) {
-                    devicePosition = data; 
-                } 
-            } catch(error) {
-                console.log('---','back-end:', error);
-            }
-        });
-    });
+    })
 }
 
 function sendDevicePosition() {
-    getDevicesPosition()
-    io.emit('transferTagData', devicePosition)
+    getDevicesPosition().then(data => {
+        io.emit('transferTagData', data);
+    })
 }

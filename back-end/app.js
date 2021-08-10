@@ -13,13 +13,13 @@ const app = express()
 /**
  * Routes
  */
-const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users')
+const indexRouter = require('@routes/index')
+const usersRouter = require('@routes/users')
 
 /**
  * Utils
  */
-const sendDataToClient = require('@utils/tagsData/sendDataToClient.js')
+const sendDataToClient = require('@utils/deviceTagData/sendDataToClient.js')
 const normalizePort = require('@utils/server/normalizePort.js')
 const onListening = require('@utils/server/serverOnListening.js')
 const onError = require('@utils/server/serverOnError.js')
@@ -85,10 +85,11 @@ const server = app.listen(PORT, () => {
  * Listen on provided port, on all network interfaces.
  */
 server.on('connection', () => {
-    console.log('---', 'Someone joined...')
+    // console.log('---', 'Someone joined...')
 })
 server.on('listening', () => {
     onListening(server)
+    // console.log('---', 'Someone listening...')
 })
 server.on('error', () => {
     onError(error, PORT)
@@ -104,7 +105,7 @@ const io = require('socket.io')(server, { cors })
  * Send tag data to client
  */
 io.once('connection', (socket) => {
-    console.log('WS: Клиент подключился')
+    console.log('WS: Соединение с клиентом установлено')
     setInterval(() => {
         sendDataToClient(io)
     }, interval)

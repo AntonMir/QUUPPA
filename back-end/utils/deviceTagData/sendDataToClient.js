@@ -1,4 +1,4 @@
-const getDataFromSensor = require('@utils/tagsData/getDataFromSensor.js')
+const getDataFromSensor = require('@utils/deviceTagData/getDataFromSensor.js')
 /**
  * send obj to client
  */

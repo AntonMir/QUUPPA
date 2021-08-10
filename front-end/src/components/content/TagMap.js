@@ -1,24 +1,20 @@
 import React, { useRef, useEffect } from 'react'
 // WS
 import io from 'socket.io-client'
-// store
-import canvasState from '@store/canvasState.js'
-import { observer } from 'mobx-react-lite'
 // img
 import background from '@img/map.png'
 // styled
 import styled from 'styled-components'
 
-const TagMap = observer(() => {
+const TagMap = () => {
     const canvasRef = useRef()
     let socket = io.connect('http://localhost:5000')
 
     useEffect(() => {
-        canvasState.setCanvas(canvasRef.current)
-        const canvas = canvasState.canvas
+        const canvas = canvasRef.current
         const ctx = canvas.getContext('2d')
         socket.on('connect', () => {
-            console.log('---', 'FRONT_END: Соединение успешно установлено')
+            console.log('WS: Соединение с сервером установлено')
         })
 
         socket.on('transferDevicePosition', (data) => {
@@ -26,29 +22,30 @@ const TagMap = observer(() => {
                 let tags = data.tags
                 try {
                     ctx.clearRect(0, 0, canvas.width, canvas.height)
-                    tags.map((tag) => {
-                        console.log('x = ', tag.location[0] * 54, ' y = ', 700 - tag.location[1] * 54)
-                        ctx.beginPath()
-                        ctx.arc(tag.location[0] * 54, 700 - tag.location[1] * 54, 10, 0, 2 * Math.PI)
-                        ctx.fillStyle = '#ff0000'
-                        ctx.fill()
-                        ctx.stroke() // обводка фигуры (контур)
-                        ctx.strokeStyle = '#000' // цвет обводки
-                        ctx.closePath()
+                    tags.forEach((tag) => {
+                        if (tag.location) {
+                            ctx.beginPath()
+                            ctx.arc(tag.location[0] * 54, 700 - tag.location[1] * 54, 10, 0, 2 * Math.PI)
+                            ctx.fillStyle = '#ff0000'
+                            ctx.fill()
+                            ctx.stroke() // обводка фигуры (контур)
+                            ctx.strokeStyle = '#000' // цвет обводки
+                            ctx.closePath()
+                        }
                     })
                 } catch (error) {
                     console.log('Error: ', error.message)
                 }
             }
         })
-    }, [])
+    })
 
     return (
         <Map>
             <Canvas width={648} height={702} ref={canvasRef}></Canvas>
         </Map>
     )
-})
+}
 
 export default TagMap
 

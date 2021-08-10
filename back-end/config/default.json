@@ -1,6 +1,8 @@
 {
-    "Tag": {
-        "getTagDataUrl": "http:/ips.itelma.su:8080/qpe/getTagData?format=defaultLocation&humanReadable=true&maxAge=5000"
+    "Device": {
+        "tag": {
+            "tagDataUrl": "http:/ips.itelma.su:8080/qpe/getTagData?format=defaultLocation&humanReadable=true&maxAge=5000"
+        }
     },
     "WSServer": {
         "cors": {

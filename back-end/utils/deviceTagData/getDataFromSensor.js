@@ -1,24 +1,20 @@
 var http = require('http')
 const config = require('config')
-const getTagDataUrl = config.get('Tag.getTagDataUrl')
+const tagDataUrl = config.get('Device.tag.tagDataUrl')
 
 /**
  * get obj from TomCat
  */
 function getDataFromSensor() {
     return new Promise((resolve) => {
-        http.get(getTagDataUrl, (resp) => {
+        http.get(tagDataUrl, (resp) => {
             let data = ''
             resp.on('data', (chunk) => {
                 data += chunk
             })
             resp.on('end', () => {
                 data = JSON.parse(data)
-                try {
-                    resolve(data.tags.length > 0 ? data : [])
-                } catch (error) {
-                    console.log('---', 'back-end:', error)
-                }
+                resolve(data)
             })
         })
     })

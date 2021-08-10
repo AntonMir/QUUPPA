@@ -1,0 +1,5 @@
+{
+    "port": 8000,
+    "jwtSecret": "some random phrase",
+    "mongoUri": "mongodb+srv://admin:Qwerty12@avtelmacluster0.seqhv.mongodb.net/AVTelmaAuthDB?retryWrites=true&w=majority"
+}

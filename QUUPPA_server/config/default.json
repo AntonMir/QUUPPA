@@ -12,10 +12,6 @@
         }
     },
     "App": {
-        "port": 5000
-    },
-    "MongoDB": {
-        "jwtSecret": "sluchainaya fraza",
-        "url": "mongodb+srv://<CHANGE>:LwBITFlbRScLeVB2@cluster0.uac2s.mongodb.net/<CHANGE>?retryWrites=true&w=majority"
+        "port": 9000
     }
 }

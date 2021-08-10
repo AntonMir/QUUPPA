@@ -2,9 +2,7 @@ var http = require('http')
 const config = require('config')
 const tagDataUrl = config.get('Device.tag.tagDataUrl')
 
-/**
- * get obj from TomCat
- */
+// return Promise with obj: device position
 function getDataFromSensor() {
     return new Promise((resolve) => {
         http.get(tagDataUrl, (resp) => {

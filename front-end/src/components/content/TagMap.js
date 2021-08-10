@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 const TagMap = () => {
     const canvasRef = useRef()
-    let socket = io.connect('http://localhost:5000')
+    let socket = io.connect('http://localhost:9000')
 
     useEffect(() => {
         const canvas = canvasRef.current

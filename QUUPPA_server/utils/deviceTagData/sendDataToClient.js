@@ -1,7 +1,6 @@
 const getDataFromSensor = require('@utils/deviceTagData/getDataFromSensor.js')
-/**
- * send obj to client
- */
+
+// get Promise from <getDataFromSensor> and send to client
 function sendDataToClient(io) {
     getDataFromSensor().then((data) => {
         io.emit('transferDevicePosition', data)

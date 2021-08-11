@@ -7,7 +7,11 @@
         "front-end:dev": "npm run --prefix front-end dev",
         "AUTH_server:dev": "npm run --prefix AUTH_server dev",
         "QUUPPA_server:dev": "npm run --prefix QUUPPA_server dev",
-        "start": "cross-env NODE_ENV=development concurrently --kill-others \"npm run front-end:dev\" \"npm run AUTH_server:dev\" \"npm run QUUPPA_server:dev\""
+        "start": "cross-env NODE_ENV=development concurrently --kill-others \"npm run front-end:dev\" \"npm run AUTH_server:dev\" \"npm run QUUPPA_server:dev\"",
+        "front-end:install": "npm run --prefix front-end install",
+        "AUTH_server:install": "npm run --prefix AUTH_server install",
+        "QUUPPA_server:install": "npm run --prefix QUUPPA_server install",
+        "install": "concurrently \"npm run front-end:install\" \"npm run AUTH_server:install\" \"npm run QUUPPA_server:install\""
     },
     "keywords": [],
     "author": "",

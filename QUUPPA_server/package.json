@@ -4,7 +4,8 @@
     "description": "",
     "main": "app.js",
     "scripts": {
-        "dev": "nodemon app.js"
+        "dev": "nodemon app.js",
+        "install": "npm i"
     },
     "keywords": [],
     "author": "",
@@ -13,6 +14,7 @@
         "config": "^3.3.6",
         "cors": "^2.8.5",
         "express": "^4.17.1",
+        "QUUPPA_server": "file:",
         "socket.io": "^4.1.3"
     },
     "devDependencies": {

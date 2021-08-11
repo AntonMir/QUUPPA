@@ -1,0 +1,20 @@
+{
+    "name": "avtelma",
+    "version": "1.0.0",
+    "description": "QUUPPA server use http://localhost:9000\r Auth server use http://localhost:8000\r Front-end use http://localhost:3000",
+    "main": "index.js",
+    "scripts": {
+        "front-end:dev": "npm run --prefix front-end dev",
+        "AUTH_server:dev": "npm run --prefix AUTH_server dev",
+        "QUUPPA_server:dev": "npm run --prefix QUUPPA_server dev",
+        "start": "cross-env NODE_ENV=development concurrently --kill-others \"npm run front-end:dev\" \"npm run AUTH_server:dev\" \"npm run QUUPPA_server:dev\""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "concurrently": "^6.2.1",
+        "cross-env": "^7.0.3",
+        "nodemon": "^2.0.12"
+    }
+}

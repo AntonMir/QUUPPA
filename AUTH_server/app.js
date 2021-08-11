@@ -1,6 +1,7 @@
 const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
+const chalk = require('chalk')
 require('module-alias/register')
 
 const app = express()
@@ -19,9 +20,9 @@ async function start() {
             useUnifiedTopology: true,
             useCreateIndex: true,
         })
-        app.listen(PORT, () => console.log(`>>> AUTH server listen http://localhost:${PORT}`))
+        app.listen(PORT, () => console.log(chalk.magenta(`>>> AUTH server listen http://localhost:${PORT}`)))
     } catch (e) {
-        console.log('Server Error', e.message)
+        console.log('Server Error:', e.message)
         process.exit(1)
     }
 }

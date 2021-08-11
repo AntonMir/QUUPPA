@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 // WS
 import io from 'socket.io-client'
 // img
-import background from '@img/map.png'
+import background from '@img/map/map.png'
 // styled
 import styled from 'styled-components'
 
@@ -51,6 +51,7 @@ export default TagMap
 
 const Canvas = styled.canvas`
     position: absolute;
+    top: 15%;
     border: 1px #000 solid;
     background: url(${background}) no-repeat center center;
     background-size: cover;
@@ -60,6 +61,6 @@ const Map = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
+    /* width: 99vw; */
+    /* height: calc(99vh - 80px); */
 `

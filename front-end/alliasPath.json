@@ -13,7 +13,7 @@
             "@footer": ["src/components/footer"],
             "@header": ["src/components/header"],
             "@authPage": ["src/components/authPage"],
-            "@routes": ["src/components/routes"]
+            "@routes": ["src/routes"]
         }
     }
 }

@@ -11,11 +11,11 @@ const useRoutes = (isAuthenticated) => {
         // это для человека, который зашел в систему
         return (
             <Switch>
-                <Route exact path="/" component={Content} />
+                <Route exact path="/map" component={Content} />
                 {/* <Route exact path="/links" component={LinksPage}/>
                 <Route exact path="/create" component={CreatePage}/>
                 <Route path="/detail/:id" component={DetailPage}/> */}
-                <Redirect to="/" />
+                <Redirect to="/map" />
             </Switch>
         )
     }

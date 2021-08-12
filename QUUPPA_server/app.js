@@ -19,8 +19,8 @@ const server = app.listen(PORT, () => {
 const io = require('socket.io')(server, { cors: config.get('WSServer.cors') })
 
 // send device position after connet with client
-io.once('connection', (socket) => {
-    console.log(chalk.blue('>> WS: Соединение с клиентом установлено'))
+io.once('connection', () => {
+    console.log(chalk.blue('>> WS: Произвожу отправку данных'))
     setInterval(() => {
         sendDataToClient(io)
     }, interval)

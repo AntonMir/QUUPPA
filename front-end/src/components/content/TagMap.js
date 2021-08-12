@@ -8,6 +8,7 @@ import styled from 'styled-components'
 
 const TagMap = () => {
     const canvasRef = useRef()
+
     let socket = io.connect('http://localhost:9000')
 
     useEffect(() => {
@@ -24,6 +25,7 @@ const TagMap = () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height)
                     tags.forEach((tag) => {
                         if (tag.location) {
+                            console.log('X=', tag.location[0] * 54, ' Y=', 700 - tag.location[1] * 54)
                             ctx.beginPath()
                             ctx.arc(tag.location[0] * 54, 700 - tag.location[1] * 54, 10, 0, 2 * Math.PI)
                             ctx.fillStyle = '#ff0000'
@@ -38,6 +40,11 @@ const TagMap = () => {
                 }
             }
         })
+
+        return () => {
+            socket.disconnect()
+            console.log('WS: Соединение с сервером прервано')
+        }
     })
 
     return (
